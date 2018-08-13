@@ -11,43 +11,23 @@
 	<div class="viewport">
 		<!-- 侧边导航 -->
 		<div  ng-class="{navs:true,collapse:left}">
-			<dl>
+			<dl ng-controller="navs">
 				<dt class="login">
 					<div class="avatar">
 						<img src="./public/images/avatar.png" alt="">
 					</div>
 					<span>登录</span>
 				</dt>
-				<dd class="active">
+				<dd ng-class="{active:$index==num}" ng-repeat="nav in navs">
+						<a href="{{nav.link}}" class="{{nav.icon}}" ng-click="toggle();">
+							<span>{{nav.text}}</span>
+						</a>
+				</dd>
+<!-- 				<dd class="active">
 					<a href="./index.html" class="icon-home">
 						<span>今日一刻</span>
 					</a>
-				</dd>
-				<dd>
-					<a href="./older.html" class="icon-file-empty">
-						<span>往期内容</span>
-					</a>
-				</dd>
-				<dd>
-					<a href="./author.html" class="icon-pencil">
-						<span>热门作者</span>
-					</a>
-				</dd>
-				<dd>
-					<a href="./category.html" class="icon-menu">
-						<span>栏目浏览</span>
-					</a>
-				</dd>
-				<dd>
-					<a href="./favourite.html" class="icon-heart">
-						<span>我的喜欢</span>
-					</a>
-				</dd>
-				<dd>
-					<a href="./settings.html" class="icon-cog">
-						<span>设置</span>
-					</a>
-				</dd>
+				</dd> -->
 			</dl>
 			<div class="extra">
 				<a href="javascript:;" class="icon-image">夜晚</a>
@@ -68,7 +48,8 @@
 					<div class="mark">13Aug</div>
 					<ul class="posts large">
 						<!-- 文章 -->
-						<li>
+						<li ng-view></li>
+						<!-- <li>
 							<span href="javascript:;" class="tag">去远方</span>
 							<div class="cont">
 								<h3>朝圣山南扎央宗--探索藏文化之源探索藏文化之源</h3>
@@ -148,7 +129,7 @@
 									</div>
 								</div>							
 							</div>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 			</div>
@@ -158,4 +139,6 @@
 </body>
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="./scripts/app.js"></script>
+<script src="./scripts/controllers.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
 </html>

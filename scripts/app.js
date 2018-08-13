@@ -1,5 +1,5 @@
-// 创建app引用模块
-var yike = angular.module("yike",[]);
+// 创建app引用模块,依赖的模块:控制器模块ctrls,路由模块ngRoute
+var yike = angular.module("yike",["ctrls","ngRoute"]);
 
 /*
   调用run方法
@@ -37,3 +37,32 @@ yike.run(["$rootScope",function($rootScope){
     }
   };
 }]);
+
+// 修复锚点值的改变
+yike.config(["$locationProvider",function($locationProvider){
+  $locationProvider.hashPrefix("");
+}]);
+// 配置路由
+yike.config(["$routeProvider",function($routeProvider){
+  $routeProvider.when("/",{
+    redirectTo:"/index"  // 跳转到/index处理
+  }).when("/index",{
+    templateUrl:"./views/test.html",  // 将要在ng-view区域显示的试图
+    controller:"index"  //调用index控制器
+  }).when("/older",{
+    templateUrl:"./views/test.html",  // 将要在ng-view区域显示的试图
+    controller:"older"  //调用index控制器
+  }).when("/author",{
+    templateUrl:"./views/test.html",  // 将要在ng-view区域显示的试图
+    controller:"author"  //调用index控制器
+  }).when("/category",{
+    templateUrl:"./views/test.html",  // 将要在ng-view区域显示的试图
+    controller:"category"  //调用index控制器
+  }).when("/favourite",{
+    templateUrl:"./views/test.html",  // 将要在ng-view区域显示的试图
+    controller:"favourite"  //调用index控制器
+  }).when("/settings",{
+    templateUrl:"./views/test.html",  // 将要在ng-view区域显示的试图
+    controller:"settings"  //调用index控制器
+  })
+}])
